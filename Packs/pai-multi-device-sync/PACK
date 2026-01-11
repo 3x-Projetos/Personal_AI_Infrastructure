@@ -1,0 +1,111 @@
+﻿---
+name: pai-multi-device-sync
+pack-id: 3x-projetos-multi-device-sync-v1.0.0
+version: 1.0.0
+tier: 0
+description: Multi-device synchronization with cloud backup and PII protection
+author: Luis Romano (adapted from Framework v2.2.0)
+created: 2026-01-10
+
+dependencies:
+  - pai-core-install (required)
+
+provides:
+  - multi-device-sync
+  - cloud-backup
+  - conflict-resolution
+  - pii-protection
+  - device-registry
+
+hooks:
+  SessionStart:
+    - Auto-pull from cloud repository
+    - Load device-specific context
+    - Retry pending pushes from previous session
+
+  SessionEnd:
+    - Run PII redaction on memory files
+    - Create git commit with session summary
+    - Push to cloud with retry logic
+
+  PrePush:
+    - Verify no unredacted PII in .safe.md files
+    - Check for merge conflicts
+    - Validate device registry integrity
+
+install_phases:
+  observe:
+    - Check git configuration
+    - Verify cloud repository access
+    - Detect current device capabilities
+
+  plan:
+    - Determine sync strategy (full vs incremental)
+    - Identify PII patterns to redact
+    - Design conflict resolution approach
+
+  execute:
+    - Clone cloud repository
+    - Register device in device-registry.json
+    - Configure git hooks for automation
+    - Test initial sync (pull + push)
+
+  verify:
+    - SessionStart pulls latest changes
+    - SessionEnd commits and pushes automatically
+    - PII redaction generates .safe.md files
+    - Conflicts auto-resolve via timestamp
+    - Multi-device sync works across 2+ machines
+
+success_criteria:
+  - Zero manual git commands required
+  - All work synced within 1 minute of session end
+  - 99% auto-resolve rate for conflicts
+  - No PII in pushed files (verified via patterns)
+  - 99.9% session start success with offline fallback
+
+performance_targets:
+  - Pull latency: <5 seconds (with network)
+  - Push latency: <3 seconds (small commits)
+  - PII redaction: <500ms per file
+  - Conflict resolution: <1 second (auto)
+  - Hook overhead: <100ms per event
+
+security:
+  - PII markers: [PII:TYPE]...[/PII:TYPE]
+  - Redaction: Pre-push verification
+  - Audit: All sync events logged
+  - Privacy: Cloud contains only .safe.md files
+  - Rollback: Git history preserves all versions
+
+migration:
+  phase1_readonly:
+    description: "PAI reads Framework cloud repo without changes"
+    duration: "Week 1"
+    risk: "Low"
+
+  phase2_hooks:
+    description: "PAI hooks manage git operations automatically"
+    duration: "Week 2"
+    risk: "Medium"
+
+  phase3_full:
+    description: "Optional: Create new PAI-specific repo, archive Framework"
+    duration: "Week 3+"
+    risk: "Low"
+
+notes: |
+  This pack adapts Framework v2.2.0's proven cloud sync patterns to PAI's
+  hook-based architecture. Framework has successfully synced memories across
+  multiple devices since 2025-12-26 with zero data loss.
+
+  Key innovations preserved:
+  - Timestamp-based conflict resolution (99% auto-resolve)
+  - Lazy logging strategy (offline-first, eventual consistency)
+  - PII redaction workflow (marker-based with verification)
+  - Device registry (JSON schema + markdown info files)
+  - Progressive context loading (.quick.md files save 70% tokens)
+
+  See PAI_PACK_1_TECHNICAL_SPEC.md for complete implementation details.
+
+---

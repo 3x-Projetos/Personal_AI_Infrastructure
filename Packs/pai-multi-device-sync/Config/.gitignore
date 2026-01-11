@@ -1,0 +1,157 @@
+# PAI Multi-Device Sync - .gitignore
+# PII Protection Patterns
+#
+# This file prevents sensitive data from being committed to cloud repository.
+# Copy to ~/.claude-memory-cloud/.gitignore
+
+# ============================================
+# TEMPORARY FILES
+# ============================================
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================
+# SESSION STATE (not finalized)
+# ============================================
+session-state.md
+*.in-progress
+*.draft
+
+# ============================================
+# LOCAL CONFIG OVERRIDES
+# ============================================
+.config.local.json
+.env.local
+*_local.md
+
+# ============================================
+# SYNC CONFLICTS (resolved manually)
+# ============================================
+sync/conflicts/*.resolved
+sync/conflicts/*.backup
+
+# ============================================
+# OS-SPECIFIC
+# ============================================
+.Trash-*
+.nfs*
+.fuse_hidden*
+$RECYCLE.BIN/
+
+# ============================================
+# SECURITY: NEVER COMMIT THESE
+# ============================================
+
+# Environment files
+*.env
+.env
+.env.*
+!.env.example
+
+# Credentials
+credentials.json
+secrets.yaml
+secrets.yml
+config.secret.json
+auth.json
+tokens.json
+
+# SSH & GPG Keys
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.asc
+*.gpg
+
+# API Keys & Tokens
+*_api_key*
+*_token*
+*_secret*
+*.credentials
+
+# Cloud provider configs
+.aws/credentials
+.gcp/credentials.json
+azure-credentials.json
+
+# Database
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Private files explicitly marked
+*_private.md
+*_private.json
+*.private.*
+
+# ============================================
+# KEEP SAFE FILES (PII-redacted)
+# ============================================
+# These are explicitly included even if matched above
+!*.safe.md
+!*.quick.md
+
+# ============================================
+# LOGS (depending on sensitivity)
+# ============================================
+# Keep daily logs (should be PII-safe)
+# Exclude verbose debug logs
+*debug.log
+*trace.log
+
+# ============================================
+# BUILD ARTIFACTS
+# ============================================
+node_modules/
+dist/
+build/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============================================
+# IDE & EDITOR
+# ============================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# TESTING
+# ============================================
+coverage/
+.nyc_output/
+test-results/
+
+# ============================================
+# DEVICE-SPECIFIC NOTES
+# ============================================
+# Allow general device info, exclude private notes
+devices/*/private-notes.md
+devices/*/credentials.md
+
+# ============================================
+# BACKUP FILES
+# ============================================
+*.backup
+*_backup_*
+backup-*/
+
+# ============================================
+# EXAMPLES & TEMPLATES (keep these)
+# ============================================
+!*.example
+!*.template
+!*.sample

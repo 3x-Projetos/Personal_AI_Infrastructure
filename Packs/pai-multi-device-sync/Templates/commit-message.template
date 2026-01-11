@@ -1,0 +1,30 @@
+{{COMMIT_TYPE}}: {{COMMIT_SUMMARY}}
+
+{{#if COMMIT_DETAILS}}
+{{COMMIT_DETAILS}}
+{{/if}}
+
+**Device**: {{DEVICE_NAME}}
+**Timestamp**: {{TIMESTAMP}}
+{{#if SESSION_DURATION}}
+**Session duration**: {{SESSION_DURATION}} minutes
+{{/if}}
+
+{{#if FILES_CHANGED}}
+**Files changed**:
+{{#each FILES_CHANGED}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+{{#if PII_REDACTED}}
+**PII redaction**: ✅ Applied ({{PII_REDACTION_COUNT}} markers)
+{{/if}}
+
+{{#if CONFLICTS_RESOLVED}}
+**Conflicts resolved**: {{CONFLICTS_RESOLVED}} via {{CONFLICT_RESOLUTION_METHOD}}
+{{/if}}
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
