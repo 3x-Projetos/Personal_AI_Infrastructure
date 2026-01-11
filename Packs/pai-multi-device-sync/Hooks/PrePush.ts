@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bun
+#!/usr/bin/env bun
 /**
  * PrePush Hook - PAI Multi-Device Sync
  *
@@ -13,7 +13,7 @@
 
 import { readFileSync, existsSync, readdirSync, statSync } from 'fs';
 import { homedir } from 'os';
-import { join } from 'path';
+import { join, relative } from 'path';
 
 // Configuration
 const MEMORY_DIR = join(homedir(), '.claude-memory-cloud');
@@ -198,7 +198,7 @@ async function main() {
       const result = checkFileForPII(file);
       if (result.hasPII) {
         piiDetected.push({
-          file: file.replace(MEMORY_DIR + '/', ''),
+          file: relative(MEMORY_DIR, file),
           findings: result.findings
         });
       }

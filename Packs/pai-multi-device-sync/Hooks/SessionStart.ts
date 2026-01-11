@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bun
+#!/usr/bin/env bun
 /**
  * SessionStart Hook - PAI Multi-Device Sync
  *

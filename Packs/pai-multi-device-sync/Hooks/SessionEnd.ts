@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bun
+#!/usr/bin/env bun
 /**
  * SessionEnd Hook - PAI Multi-Device Sync
  *
@@ -14,7 +14,7 @@
 import { readFileSync, existsSync, writeFileSync, mkdirSync, appendFileSync } from 'fs';
 import { execSync } from 'child_process';
 import { homedir } from 'os';
-import { join } from 'path';
+import { join, relative } from 'path';
 
 // Configuration
 const MEMORY_DIR = join(homedir(), '.claude-memory-cloud');
