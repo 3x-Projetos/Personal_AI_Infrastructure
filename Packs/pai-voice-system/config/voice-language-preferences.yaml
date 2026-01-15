@@ -1,0 +1,34 @@
+# Voice Language Preferences
+# Based on quality testing session 2026-01-15
+#
+# All voices are multilingual (PT-BR, EN, etc.) but have
+# optimal quality in specific languages based on reference audio.
+
+voices:
+  jessica-voice:
+    description: "Feminine, main assistant"
+    optimal_language: "pt-BR"
+    notes: "Sounds better in Portuguese. Primary voice for MAI."
+
+  george-voice:
+    description: "Masculine, mature"
+    optimal_language: "en"
+    notes: "Sounds better in English. Good for formal/technical content."
+
+  brian-voice:
+    description: "Masculine, young/dynamic"
+    optimal_language: "en"
+    notes: "Sounds better in English. Good for casual/energetic content."
+
+  charlotte-voice:
+    description: "Feminine, expressive"
+    optimal_language: "en"
+    notes: "Sounds better in English. Good for creative content."
+
+# Recommended usage:
+# - Portuguese content: jessica-voice (primary)
+# - English content: george-voice, brian-voice, or charlotte-voice
+# - Mixed content: jessica-voice (handles both adequately)
+
+# Reference audio quality affects language performance.
+# See issue #3 for improving voice references.
