@@ -1,0 +1,86 @@
+# ElevenLabs Voice Options for MAI
+# All voices support Multilingual v2 (English + Portuguese)
+# Change ELEVENLABS_VOICE_ID in ~/.env to switch voices
+
+# Current active voice
+active: jessica
+
+# Female voices - Recommended for assistant
+female:
+  jessica:
+    id: "cgSgspJ2msm6clMCkdW9"
+    age: young
+    accent: American
+    style: expressive, conversational
+    best_for: "Chat-style assistant"
+
+  lily:
+    id: "pFZP5JQG7iQjIQuC4Bku"
+    age: middle
+    accent: British
+    style: warm, narration
+    best_for: "Calm, professional assistant"
+
+  matilda:
+    id: "XrExE9yKIg1WjnnlVkGX"
+    age: middle
+    accent: American
+    style: friendly, narration
+    best_for: "Helpful, approachable assistant"
+
+  aria:
+    id: "9BWtsMINqrJLrRacOk9x"
+    age: middle
+    accent: American
+    style: expressive, social
+    best_for: "Engaging, energetic assistant"
+
+  sarah:
+    id: "EXAVITQu4vr4xnSDxMaL"
+    age: young
+    accent: American
+    style: soft, news
+    best_for: "Gentle notifications"
+
+  alice:
+    id: "Xb7hH8MSUJpSbSDYk0k2"
+    age: middle
+    accent: British
+    style: confident, news
+    best_for: "Authoritative announcements"
+
+  charlotte:
+    id: "XB0fDUnXU5powFXDhCwa"
+    age: young
+    accent: Swedish
+    style: seductive, characters
+    best_for: "Character voice"
+
+  laura:
+    id: "FGY2WhTYpPnrIDTdsKH5"
+    age: young
+    accent: American
+    style: upbeat, lively
+    best_for: "Energetic notifications"
+
+# Male voices - For reference
+male:
+  daniel:
+    id: "onwK4e9ZLuTAKqWW03F9"
+    age: middle
+    accent: British
+    style: authoritative, news
+    best_for: "Professional announcements"
+
+  brian:
+    id: "N2lVS1w4EtoT3dr4eOWO"
+    age: middle
+    accent: American
+    style: deep, serious
+    best_for: "Narration, serious tone"
+
+# Quick reference - Copy to ~/.env
+# ELEVENLABS_VOICE_ID=cgSgspJ2msm6clMCkdW9  # Jessica (current)
+# ELEVENLABS_VOICE_ID=pFZP5JQG7iQjIQuC4Bku  # Lily
+# ELEVENLABS_VOICE_ID=XrExE9yKIg1WjnnlVkGX  # Matilda
+# ELEVENLABS_VOICE_ID=9BWtsMINqrJLrRacOk9x  # Aria

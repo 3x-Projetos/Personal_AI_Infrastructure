@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "msgpackr": "^1.11.8"
+  }
+}

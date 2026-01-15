@@ -1,0 +1,95 @@
+# PAI Voice System - TTS Provider Configuration
+# Strategy: Local-first, ElevenLabs as premium fallback
+
+# Provider priority (first available wins)
+priority:
+  - fish-audio    # Primary: Local, free, emotional
+  - elevenlabs    # Fallback: Premium quality, quota-limited
+
+providers:
+  fish-audio:
+    name: "Fish Audio S1"
+    type: "local"
+    enabled: true
+    endpoint: "http://localhost:8080"
+    status: "primary"
+    features:
+      - emotional-tts
+      - voice-cloning
+      - multilingual
+    emotions:
+      - "(happy)"
+      - "(sad)"
+      - "(angry)"
+      - "(excited)"
+      - "(surprised)"
+      - "(worried)"
+      - "(confident)"
+      - "(curious)"
+      - "(laughing)"
+      - "(sighing)"
+    languages:
+      - en  # English
+      - pt  # Portuguese
+      - zh  # Chinese
+      - ja  # Japanese
+      - es  # Spanish
+    cost: 0
+    setup: "~/PAI/Packs/pai-voice-system/scripts/setup-fallback-tts.sh"
+
+  elevenlabs:
+    name: "ElevenLabs"
+    type: "cloud"
+    enabled: true
+    endpoint: "https://api.elevenlabs.io/v1"
+    status: "fallback"
+    features:
+      - premium-quality
+      - emotional-tts
+      - multilingual-v2
+    voices:
+      jessica: "cgSgspJ2msm6clMCkdW9"    # Active
+      lily: "pFZP5JQG7iQjIQuC4Bku"
+      matilda: "XrExE9yKIg1WjnnlVkGX"
+      aria: "9BWtsMINqrJLrRacOk9x"
+    default_voice: "jessica"
+    model: "eleven_multilingual_v2"
+    quota:
+      limit: 10000
+      threshold: 500  # Switch to local below this
+    cost: "paid"
+
+# STT Configuration
+stt:
+  sensevoice:
+    name: "SenseVoice"
+    type: "local"
+    enabled: false  # Enable after setup
+    features:
+      - emotion-recognition
+      - multilingual
+      - sound-events
+    emotions:
+      - happy
+      - sad
+      - angry
+      - neutral
+    events:
+      - laughter
+      - music
+      - applause
+      - cough
+      - cry
+    setup: "~/PAI/Packs/pai-voice-system/scripts/setup-sensevoice.sh"
+
+# Fallback behavior
+fallback:
+  # When to use fallback
+  conditions:
+    - fish_audio_unavailable
+    - explicit_premium_request
+    - quota_remaining_above_threshold
+
+  # Log fallback usage
+  log_fallback: true
+  log_path: "~/.claude-memory-cloud/sync/tts-usage.jsonl"
